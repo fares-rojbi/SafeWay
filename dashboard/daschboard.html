@@ -90,31 +90,31 @@
     </style>
   </head>
   <body>
-    <header>SafeWAY - Tableau de bord</header>
+    <header>SafeWAY - Dashboard</header>
 
     <div class="dashboard">
       <div class="widget">
-        <h2><i class="fas fa-thermometer-half"></i> Température</h2>
+        <h2><i class="fas fa-thermometer-half"></i> Temperature</h2>
         <div class="value" id="temp">-- °C</div>
       </div>
 
       <div class="widget">
-        <h2><i class="fas fa-tint"></i> Humidité</h2>
+        <h2><i class="fas fa-tint"></i> Humidity</h2>
         <div class="value" id="humidity">-- %</div>
       </div>
 
       <div class="widget">
-        <h2><i class="fas fa-cloud-rain"></i> Alerte Pluie</h2>
+        <h2><i class="fas fa-cloud-rain"></i> Rain Alert</h2>
         <div class="value alert" id="rain">--</div>
       </div>
 
       <div class="widget">
-        <h2><i class="fas fa-eye"></i> Visibilité</h2>
+        <h2><i class="fas fa-eye"></i> Visibility</h2>
         <div class="value" id="visibility">-- %</div>
       </div>
 
       <div class="widget">
-        <h2><i class="fas fa-tachometer-alt"></i> Limite de vitesse</h2>
+        <h2><i class="fas fa-tachometer-alt"></i> Speed Limit</h2>
         <div class="value" id="speed-limit">50 km/h</div>
       </div>
     </div>
@@ -143,15 +143,15 @@
           document.getElementById("humidity").innerText = `${humidity} %`;
           document.getElementById("visibility").innerText = `${visibility} %`;
           document.getElementById("rain").innerText =
-            rain === "1" ? "🌧️ Pluie détectée" : "☀️ Pas de pluie";
+            rain === "1" ? "🌧️ Rain detected" : "☀️ No rain";
         } catch (error) {
-          console.error("Erreur lors de la récupération des données :", error);
+          console.error("Error while fetching data:", error);
         }
       }
 
-      // Mettre à jour toutes les 5 secondes
+      // Update every 5 seconds
       setInterval(fetchData, 5000);
-      fetchData(); // Chargement initial
+      fetchData(); // Initial load
     </script>
   </body>
 </html>
