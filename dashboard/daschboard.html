@@ -1,157 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SafeWAY Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <style>
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background: #1f1f1f;
-        color: white;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>SafeWAY Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d8f3ff, #ede3ff);
+      color: #2a2a2a;
+      margin: 0;
+      padding: 0;
+    }
 
+    header {
+      background: #ffffff;
+      padding: 25px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: 600;
+      border-bottom: 4px solid #00aaff;
+      letter-spacing: 1px;
+      color: #004466;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .widget {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 170, 255, 0.15);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .widget:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 0 25px rgba(164, 112, 241, 0.3);
+    }
+
+    .widget h2 {
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      color: #00aaff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .widget .value {
+      font-size: 2.5em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+
+    .alert {
+      color: #d60000;
+      font-weight: bold;
+    }
+
+    .widget i {
+      font-size: 1.4em;
+      color: #a470f1;
+    }
+
+    @media (max-width: 500px) {
       header {
-        background-color: #282c34;
-        padding: 20px;
-        text-align: center;
-        font-size: 1.8em;
-        font-weight: bold;
-        border-bottom: 2px solid #00bcd4;
-      }
-
-      .dashboard {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        padding: 30px;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-
-      @media (max-width: 1200px) {
-        .dashboard {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .dashboard {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .widget {
-        background: #2c2f36;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px #00bcd4;
-        text-align: center;
-        transition: transform 0.3s ease;
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .widget:hover {
-        transform: translateY(-5px);
-      }
-
-      .widget h2 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        color: #00bcd4;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .widget .value {
-        font-size: 2em;
-        font-weight: bold;
-      }
-
-      .alert {
-        color: #ff4c4c;
-        font-weight: bold;
-      }
-
-      .widget i {
         font-size: 1.5em;
-        color: #00bcd4;
+        padding: 20px;
       }
-    </style>
-  </head>
-  <body>
-    <header>SafeWAY - Dashboard</header>
+    }
+  </style>
+</head>
+<body>
+  <header>SafeWAY - Dashboard</header>
 
-    <div class="dashboard">
-      <div class="widget">
-        <h2><i class="fas fa-thermometer-half"></i> Temperature</h2>
-        <div class="value" id="temp">-- °C</div>
-      </div>
-
-      <div class="widget">
-        <h2><i class="fas fa-tint"></i> Humidity</h2>
-        <div class="value" id="humidity">-- %</div>
-      </div>
-
-      <div class="widget">
-        <h2><i class="fas fa-cloud-rain"></i> Rain Alert</h2>
-        <div class="value alert" id="rain">--</div>
-      </div>
-
-      <div class="widget">
-        <h2><i class="fas fa-eye"></i> Visibility</h2>
-        <div class="value" id="visibility">-- %</div>
-      </div>
-
-      <div class="widget">
-        <h2><i class="fas fa-tachometer-alt"></i> Speed Limit</h2>
-        <div class="value" id="speed-limit">50 km/h</div>
-      </div>
+  <div class="dashboard">
+    <div class="widget">
+      <h2><i class="fas fa-thermometer-half"></i> Temperature</h2>
+      <div class="value" id="temp">-- °C</div>
     </div>
 
-    <script>
-      const BLYNK_TOKEN = "eoEpuHJF2CoI0rstb28SerwkQsmHetxI";
+    <div class="widget">
+      <h2><i class="fas fa-tint"></i> Humidity</h2>
+      <div class="value" id="humidity">-- %</div>
+    </div>
 
-      async function fetchData() {
-        try {
-          const [temp, humidity, visibility, rain] = await Promise.all([
-            fetch(
-              `https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V0`
-            ).then((res) => res.text()),
-            fetch(
-              `https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V1`
-            ).then((res) => res.text()),
-            fetch(
-              `https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V2`
-            ).then((res) => res.text()),
-            fetch(
-              `https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V3`
-            ).then((res) => res.text()),
-          ]);
+    <div class="widget">
+      <h2><i class="fas fa-cloud-rain"></i> Rain Alert</h2>
+      <div class="value alert" id="rain">--</div>
+    </div>
 
-          document.getElementById("temp").innerText = `${temp} °C`;
-          document.getElementById("humidity").innerText = `${humidity} %`;
-          document.getElementById("visibility").innerText = `${visibility} %`;
-          document.getElementById("rain").innerText =
-            rain === "1" ? "🌧️ Rain detected" : "☀️ No rain";
-        } catch (error) {
-          console.error("Error while fetching data:", error);
-        }
+    <div class="widget">
+      <h2><i class="fas fa-eye"></i> Visibility</h2>
+      <div class="value" id="visibility">-- %</div>
+    </div>
+
+    <div class="widget">
+      <h2><i class="fas fa-tachometer-alt"></i> Speed Limit</h2>
+      <div class="value" id="speed-limit">50 km/h</div>
+    </div>
+  </div>
+
+  <script>
+    const BLYNK_TOKEN = "eoEpuHJF2CoI0rstb28SerwkQsmHetxI";
+
+    async function fetchData() {
+      try {
+        const [temp, humidity, visibility, rain] = await Promise.all([
+          fetch(`https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V0`).then(res => res.text()),
+          fetch(`https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V1`).then(res => res.text()),
+          fetch(`https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V2`).then(res => res.text()),
+          fetch(`https://blynk.cloud/external/api/get?token=${BLYNK_TOKEN}&V3`).then(res => res.text()),
+        ]);
+
+        document.getElementById("temp").innerText = `${temp} °C`;
+        document.getElementById("humidity").innerText = `${humidity} %`;
+        document.getElementById("visibility").innerText = `${visibility} %`;
+        document.getElementById("rain").innerText = rain === "1" ? "🌧️ Rain detected" : "☀️ No rain";
+      } catch (error) {
+        console.error("Error while fetching data:", error);
       }
+    }
 
-      // Update every 5 seconds
-      setInterval(fetchData, 5000);
-      fetchData(); // Initial load
-    </script>
-  </body>
+    setInterval(fetchData, 5000);
+    fetchData();
+  </script>
+</body>
 </html>
