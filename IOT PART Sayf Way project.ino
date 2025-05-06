@@ -2,9 +2,9 @@
 #include <DHT_U.h>
 #include <Adafruit_Sensor.h>
 
-#define BLYNK_TEMPLATE_ID "TMPL2Gr3qwDb7"
+#define BLYNK_TEMPLATE_ID "TMPL2xYgMdj8e"
 #define BLYNK_TEMPLATE_NAME "SafeWAY"
-#define BLYNK_AUTH_TOKEN "eoEpuHJF2CoI0rstb28SerwkQsmHetxI"
+#define BLYNK_AUTH_TOKEN "feAn__uI_ResBbiHpK0VrLpyGdR-sE2B"
 #define BLYNK_PRINT Serial
 
 #include <WiFi.h>
