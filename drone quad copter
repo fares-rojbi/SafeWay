@@ -1,0 +1,41 @@
+#include <Wire.h>
+#include <Servo.h>
+
+Servo motor1;
+Servo motor2;
+Servo motor3;
+Servo motor4;
+
+int valX, valY, valZ;
+int throttle, yaw, pitch, roll;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+
+  motor1.attach(3);
+  motor2.attach(5);
+  motor3.attach(6);
+  motor4.attach(9);
+
+  // Setup code for sensors (e.g., MPU6050) can go here
+}
+
+void loop() {
+  if (Serial.available() >= 4) {
+    throttle = Serial.read();
+    yaw      = Serial.read();
+    pitch    = Serial.read();
+    roll     = Serial.read();
+
+    int m1 = throttle + pitch + roll - yaw;
+    int m2 = throttle + pitch - roll + yaw;
+    int m3 = throttle - pitch - roll - yaw;
+    int m4 = throttle - pitch + roll + yaw;
+
+    motor1.writeMicroseconds(constrain(m1, 1000, 2000));
+    motor2.writeMicroseconds(constrain(m2, 1000, 2000));
+    motor3.writeMicroseconds(constrain(m3, 1000, 2000));
+    motor4.writeMicroseconds(constrain(m4, 1000, 2000));
+  }
+}
